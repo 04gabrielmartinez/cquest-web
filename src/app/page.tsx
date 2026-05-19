@@ -1,65 +1,135 @@
-import Image from "next/image";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { getDictionary, getLocale } from "@/lib/content";
 
-export default function Home() {
+export default async function Home() {
+  const [dictionary, locale] = await Promise.all([getDictionary(), getLocale()]);
+  const serviceCards = [
+    {
+      title: dictionary.home_service_1_title,
+      desc: dictionary.home_service_1_desc,
+      meta: dictionary.nav_digital,
+    },
+    {
+      title: dictionary.home_service_2_title,
+      desc: dictionary.home_service_2_desc,
+      meta: dictionary.nav_infra,
+    },
+    {
+      title: dictionary.home_service_3_title,
+      desc: dictionary.home_service_3_desc,
+      meta: dictionary.nav_customer,
+    },
+    {
+      title: dictionary.home_service_4_title,
+      desc: dictionary.home_service_4_desc,
+      meta: dictionary.nav_operations,
+    },
+  ];
+
+  const methodSteps = [
+    dictionary.home_method_1,
+    dictionary.home_method_2,
+    dictionary.home_method_3,
+    dictionary.home_method_4,
+  ];
+
+  const outcomes = [
+    dictionary.home_outcome_1,
+    dictionary.home_outcome_2,
+    dictionary.home_outcome_3,
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <Header dictionary={dictionary} locale={locale} />
+      <Hero dictionary={dictionary} />
+
+      <main className="page-content">
+        <section id="services" className="home-section home-services">
+          <div className="container">
+            <div className="section-heading">
+              <span className="eyebrow">{dictionary.home_services_kicker}</span>
+              <h2>{dictionary.home_services_title}</h2>
+              <p>{dictionary.home_services_summary}</p>
+            </div>
+
+            <div className="premium-grid">
+              {serviceCards.map((service) => (
+                <article className="premium-card" key={service.title}>
+                  <span>{service.meta}</span>
+                  <h3>{service.title}</h3>
+                  <p>{service.desc}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-method">
+          <div className="container method-layout">
+            <div className="section-heading">
+              <span className="eyebrow">{dictionary.home_method_kicker}</span>
+              <h2>{dictionary.home_method_title}</h2>
+              <p>{dictionary.home_method_summary}</p>
+            </div>
+
+            <div className="method-panel">
+              {methodSteps.map((step, index) => (
+                <div className="method-step" key={step}>
+                  <strong>{String(index + 1).padStart(2, "0")}</strong>
+                  <span>{step}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section id="sectors" className="home-section home-industries">
+          <div className="container industries-layout">
+            <div>
+              <span className="eyebrow">{dictionary.home_industries_kicker}</span>
+              <h2>{dictionary.home_industries_title}</h2>
+              <p>{dictionary.home_industries_summary}</p>
+              <div className="industry-pills">
+                <span>{dictionary.nav_health}</span>
+                <span>{dictionary.nav_finance}</span>
+                <span>{dictionary.nav_retail}</span>
+                <span>{dictionary.nav_telecom}</span>
+                <span>{dictionary.nav_travel}</span>
+              </div>
+            </div>
+
+            <div className="outcome-panel">
+              <div className="outcome-kpis">
+                <div><strong>120+</strong>{dictionary.kpi_1}</div>
+                <div><strong>99.9%</strong>{dictionary.kpi_2}</div>
+                <div><strong>&lt; 15 min</strong>{dictionary.kpi_3}</div>
+              </div>
+              <div className="outcome-list">
+                {outcomes.map((outcome) => (
+                  <span key={outcome}>{outcome}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section home-cta">
+          <div className="container cta-band">
+            <div>
+              <span className="eyebrow">{dictionary.nav_contact}</span>
+              <h2>{dictionary.home_cta_title}</h2>
+              <p>{dictionary.home_cta_summary}</p>
+            </div>
+            <a className="btn" href="/contact">{dictionary.cta}</a>
+          </div>
+        </section>
       </main>
-    </div>
+
+      <footer>
+        <div className="container">{dictionary.footer}</div>
+      </footer>
+    </>
   );
 }
