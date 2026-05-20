@@ -132,7 +132,7 @@ export function OperationalCommandSection({ locale }: OperationalCommandSectionP
   }, []);
 
   return (
-    <section className="home-section operating-model" ref={sectionRef}>
+    <section className="home-section operating-model" ref={sectionRef} data-scroll-signal="model">
       <div className="container operating-model-layout">
         <div className="operating-model-copy" ref={copyRef}>
           <span className="eyebrow">{sectionContent.kicker}</span>

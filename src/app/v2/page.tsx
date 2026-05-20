@@ -1,6 +1,7 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { OperationalCommandSection } from "@/components/OperationalCommandSection";
+import { ScrollPathSignal } from "@/components/ScrollPathSignal";
 import { ServicesNarrative } from "@/components/ServicesNarrative";
 import { getDictionary, getLocale } from "@/lib/content";
 
@@ -67,15 +68,18 @@ export default async function HomeV2() {
 
   return (
     <div className="page-v2">
+      <ScrollPathSignal />
       <Header dictionary={dictionary} locale={locale} />
-      <Hero
-        dictionary={dictionary}
-        splineRuntimeSceneUrl="https://prod.spline.design/w5fDAYD0y2M-J7Xr/scene.splinecode"
-        splineRenderOnDemand={false}
-      />
+      <div data-scroll-signal="hero">
+        <Hero
+          dictionary={dictionary}
+          splineRuntimeSceneUrl="https://prod.spline.design/w5fDAYD0y2M-J7Xr/scene.splinecode"
+          splineRenderOnDemand={false}
+        />
+      </div>
 
       <main className="page-content">
-        <section id="services" className="home-section home-services">
+        <section id="services" className="home-section home-services" data-scroll-signal="services">
           <div className="container">
             <ServicesNarrative
               kicker={dictionary.home_services_kicker}
@@ -88,7 +92,7 @@ export default async function HomeV2() {
 
         <OperationalCommandSection locale={locale} />
 
-        <section id="sectors" className="home-section home-industries">
+        <section id="sectors" className="home-section home-industries" data-scroll-signal="sectors">
           <div className="container industries-layout">
             <div>
               <span className="eyebrow">{dictionary.home_industries_kicker}</span>
@@ -118,7 +122,7 @@ export default async function HomeV2() {
           </div>
         </section>
 
-        <section className="home-section home-cta">
+        <section className="home-section home-cta" data-scroll-signal="contact">
           <div className="container cta-band">
             <div>
               <span className="eyebrow">{dictionary.nav_contact}</span>

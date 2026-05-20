@@ -1338,6 +1338,163 @@ footer {
   z-index: 1;
 }
 
+.page-v2 .scroll-path-signal {
+  position: fixed;
+  top: 88px;
+  right: clamp(18px, 3vw, 48px);
+  bottom: 34px;
+  z-index: 90;
+  width: clamp(58px, 5.8vw, 92px);
+  pointer-events: none;
+}
+
+.page-v2 .scroll-path-signal-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.page-v2 .scroll-path-signal-guide,
+.page-v2 .scroll-path-signal-path {
+  fill: none;
+  vector-effect: non-scaling-stroke;
+}
+
+.page-v2 .scroll-path-signal-guide {
+  stroke: rgba(14, 116, 144, 0.12);
+  stroke-dasharray: 1 10;
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+.page-v2 .scroll-path-signal-path {
+  stroke: transparent;
+  stroke-width: 1;
+}
+
+.page-v2 .scroll-path-signal-marker {
+  position: absolute;
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  transform-origin: center;
+  will-change: transform;
+}
+
+.page-v2 .scroll-path-signal-shape {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(14, 116, 144, 0.26);
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(255, 255, 255, 0.92), transparent 28%),
+    linear-gradient(135deg, rgba(116, 195, 213, 0.9), rgba(14, 116, 144, 0.82));
+  box-shadow:
+    0 18px 40px rgba(14, 116, 144, 0.22),
+    0 0 0 8px rgba(116, 195, 213, 0.09);
+  transition:
+    border-radius 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    background 0.42s ease,
+    box-shadow 0.42s ease;
+}
+
+.page-v2 .scroll-path-signal-shape::before,
+.page-v2 .scroll-path-signal-shape::after {
+  position: absolute;
+  content: "";
+  transition:
+    opacity 0.32s ease,
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.42s ease;
+}
+
+.page-v2 .scroll-path-signal-shape::before {
+  inset: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  border-radius: inherit;
+}
+
+.page-v2 .scroll-path-signal-shape::after {
+  top: 50%;
+  left: 50%;
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.84);
+  transform: translate(-50%, -50%);
+}
+
+.page-v2 .scroll-path-signal-label {
+  position: absolute;
+  top: 50%;
+  right: 46px;
+  min-width: 74px;
+  padding: 7px 9px;
+  border: 1px solid rgba(16, 32, 51, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  color: rgba(16, 32, 51, 0.66);
+  font-size: 10px;
+  font-weight: 780;
+  line-height: 1;
+  text-align: center;
+  box-shadow: 0 14px 30px rgba(16, 32, 51, 0.08);
+  transform: translateY(-50%);
+  backdrop-filter: blur(12px);
+}
+
+.page-v2 .scroll-path-signal-marker.is-systems .scroll-path-signal-shape {
+  border-radius: 12px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(116, 195, 213, 0.5)),
+    rgba(14, 116, 144, 0.78);
+  transform: rotate(45deg) scale(0.92);
+}
+
+.page-v2 .scroll-path-signal-marker.is-model .scroll-path-signal-shape {
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(52, 211, 153, 0.8), rgba(14, 116, 144, 0.86));
+  transform: scaleX(1.24) scaleY(0.82);
+}
+
+.page-v2 .scroll-path-signal-marker.is-model .scroll-path-signal-shape::after {
+  width: 18px;
+  height: 3px;
+  border-radius: 999px;
+}
+
+.page-v2 .scroll-path-signal-marker.is-signals .scroll-path-signal-shape {
+  border-radius: 16px 16px 16px 4px;
+  background:
+    radial-gradient(circle at 68% 30%, rgba(255, 255, 255, 0.84), transparent 22%),
+    linear-gradient(135deg, rgba(154, 220, 231, 0.9), rgba(20, 184, 166, 0.84));
+  transform: rotate(-12deg);
+}
+
+.page-v2 .scroll-path-signal-marker.is-ready .scroll-path-signal-shape {
+  border-radius: 999px 999px 999px 8px;
+  background:
+    linear-gradient(135deg, rgba(52, 211, 153, 0.92), rgba(14, 116, 144, 0.9));
+  transform: rotate(45deg) scale(0.92);
+}
+
+.page-v2 .scroll-path-signal-marker.is-ready .scroll-path-signal-shape::after {
+  width: 13px;
+  height: 6px;
+  border: solid #ffffff;
+  border-width: 0 0 2px 2px;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: translate(-50%, -62%) rotate(-90deg);
+}
+
 .page-v2 .site-header {
   position: fixed;
   top: 20px;
@@ -2280,6 +2437,10 @@ html[data-header-solid] .page-v2 .language-switcher {
   .page-v2 .site-header {
     top: 10px;
     z-index: 160;
+  }
+
+  .page-v2 .scroll-path-signal {
+    display: none;
   }
 
   .page-v2 .container {
