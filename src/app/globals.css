@@ -1722,17 +1722,6 @@ html[data-header-solid] .page-v2 .language-switcher {
   overflow: visible;
 }
 
-.page-v2 .operational-command-visual::before {
-  position: absolute;
-  inset: 10% 2% 2% 8%;
-  z-index: -1;
-  border-radius: 999px;
-  background: radial-gradient(circle, rgba(116, 195, 213, 0.24), transparent 62%);
-  filter: blur(22px);
-  content: "";
-  pointer-events: none;
-}
-
 .page-v2 .operational-command-image {
   position: absolute;
   inset: 50% auto auto 50%;
@@ -2514,11 +2503,6 @@ html[data-header-solid] .page-v2 .language-switcher {
     min-height: clamp(270px, 68vw, 390px);
     margin: -6px -28px 0 -10px;
     overflow: hidden;
-  }
-
-  .page-v2 .operational-command-visual::before {
-    inset: 14% 4% 10% 22%;
-    filter: blur(18px);
   }
 
   .page-v2 .operational-command-image {
