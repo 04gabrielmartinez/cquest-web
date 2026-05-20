@@ -161,8 +161,8 @@ export function OperationalCommandSection({ locale }: OperationalCommandSectionP
             <Image
               src="/assets/img/sections/operational-command-layer.png"
               alt={sectionContent.imageAlt}
-              width={1376}
-              height={768}
+              width={704}
+              height={618}
               sizes="(max-width: 900px) 100vw, 58vw"
               priority={false}
             />
