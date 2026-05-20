@@ -1354,8 +1354,7 @@ footer {
   overflow: visible;
 }
 
-.page-v2 .scroll-path-signal-guide,
-.page-v2 .scroll-path-signal-path {
+.page-v2 .scroll-path-signal-guide {
   fill: none;
   vector-effect: non-scaling-stroke;
 }
@@ -1364,11 +1363,6 @@ footer {
   stroke: rgba(14, 116, 144, 0.095);
   stroke-dasharray: 1 13;
   stroke-linecap: round;
-  stroke-width: 1;
-}
-
-.page-v2 .scroll-path-signal-path {
-  stroke: transparent;
   stroke-width: 1;
 }
 

@@ -52,12 +52,6 @@ export function ScrollPathSignal() {
       return;
     }
 
-    const path = root.querySelector<SVGPathElement>(".scroll-path-signal-path");
-
-    if (!path) {
-      return;
-    }
-
     const context = gsap.context(() => {
       const setState = (stateKey: StateKey) => {
         if (currentStateRef.current === stateKey) {
@@ -151,12 +145,25 @@ export function ScrollPathSignal() {
 
       setState("hero");
 
-      gsap.to(signal, {
+      const getPoints = () => {
+        const width = window.innerWidth;
+        const height = root.offsetHeight;
+
+        return [
+          { x: width * 0.68, y: height * 0.05 },
+          { x: width * 0.34, y: height * 0.22 },
+          { x: width * 0.72, y: height * 0.42 },
+          { x: width * 0.43, y: height * 0.58 },
+          { x: width * 0.26, y: height * 0.74 },
+          { x: width * 0.58, y: height * 0.96 },
+        ];
+      };
+
+      const pathTween = gsap.to(signal, {
         ease: "none",
         motionPath: {
-          path,
-          align: path,
-          alignOrigin: [0.5, 0.5],
+          path: getPoints(),
+          curviness: 1.35,
           autoRotate: false,
         },
         scrollTrigger: {
@@ -166,6 +173,15 @@ export function ScrollPathSignal() {
           scrub: 0.8,
           invalidateOnRefresh: true,
         },
+      });
+
+      ScrollTrigger.addEventListener("refreshInit", () => {
+        pathTween.vars.motionPath = {
+          path: getPoints(),
+          curviness: 1.35,
+          autoRotate: false,
+        };
+        pathTween.invalidate();
       });
 
       const sections = gsap.utils.toArray<HTMLElement>("[data-scroll-signal]");
@@ -197,11 +213,7 @@ export function ScrollPathSignal() {
       <svg className="scroll-path-signal-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
         <path
           className="scroll-path-signal-guide"
-          d="M72 5 C54 14 28 18 38 30 C54 46 80 40 70 55 C58 72 31 61 40 76 C49 90 68 86 58 97"
-        />
-        <path
-          className="scroll-path-signal-path"
-          d="M72 5 C54 14 28 18 38 30 C54 46 80 40 70 55 C58 72 31 61 40 76 C49 90 68 86 58 97"
+          d="M68 5 C50 14 24 18 34 30 C50 46 76 40 72 55 C66 70 30 58 26 74 C24 88 58 86 58 96"
         />
       </svg>
 
