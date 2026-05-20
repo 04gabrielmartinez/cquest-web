@@ -1775,28 +1775,16 @@ html[data-header-solid] .page-v2 .language-switcher {
 .page-v2 .operational-command-visual-shell {
   position: absolute;
   inset: 4% 0 0;
-  border: 1px solid rgba(16, 32, 51, 0.08);
+  border: 0;
   border-radius: 8px;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(239, 249, 253, 0.28)),
-    rgba(255, 255, 255, 0.34);
-  box-shadow:
-    0 38px 110px rgba(16, 32, 51, 0.11),
-    inset 0 1px 0 rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(12px);
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
   overflow: hidden;
 }
 
 .page-v2 .operational-command-visual-shell::before {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(rgba(14, 116, 144, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(14, 116, 144, 0.045) 1px, transparent 1px);
-  background-size: 32px 32px;
-  content: "";
-  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 86%);
-  pointer-events: none;
+  content: none;
 }
 
 .page-v2 .operational-command-visual-head {
@@ -1929,6 +1917,7 @@ html[data-header-solid] .page-v2 .language-switcher {
   display: block;
   width: 100%;
   height: auto;
+  background: transparent;
   filter:
     contrast(1.08)
     saturate(1.08)
