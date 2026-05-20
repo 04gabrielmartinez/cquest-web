@@ -2325,6 +2325,11 @@ html[data-header-solid] .page-v2 .language-switcher {
     backdrop-filter: none;
   }
 
+  .page-v2 .services-showcase-mobile-scroll .services-carousel {
+    overflow: hidden;
+    touch-action: pan-y;
+  }
+
   .page-v2 .services-carousel::-webkit-scrollbar {
     display: none;
   }
@@ -2337,7 +2342,6 @@ html[data-header-solid] .page-v2 .language-switcher {
     gap: var(--service-carousel-gap);
     padding-right: 12px;
     will-change: transform;
-    transform: none !important;
   }
 
   .page-v2 .service-capability {

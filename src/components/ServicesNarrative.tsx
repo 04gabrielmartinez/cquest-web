@@ -68,8 +68,8 @@ export function ServicesNarrative({ kicker, title, summary, services }: Services
 
       if (window.matchMedia("(max-width: 900px)").matches) {
         gsap.set(narrative, { autoAlpha: 0, y: 20 });
-        gsap.set(cards, { autoAlpha: 0, y: 22 });
-        gsap.set(track, { y: 0, force3D: true });
+        gsap.set(cards, { autoAlpha: 0, x: 18, y: 0 });
+        gsap.set(track, { x: 0, y: 0, force3D: true });
 
         const mobileTimeline = gsap
           .timeline({ paused: true })
@@ -83,7 +83,7 @@ export function ServicesNarrative({ kicker, title, summary, services }: Services
             cards,
             {
               autoAlpha: 1,
-              y: 0,
+              x: 0,
               duration: 0.58,
               ease: "power3.out",
               stagger: 0.07,
@@ -91,15 +91,39 @@ export function ServicesNarrative({ kicker, title, summary, services }: Services
             "-=0.24",
           );
 
-        ScrollTrigger.create({
-          trigger: root,
-          start: "top 92%",
-          end: "bottom 12%",
-          invalidateOnRefresh: true,
-          onEnter: () => mobileTimeline.play(),
-          onEnterBack: () => mobileTimeline.play(),
-          onLeaveBack: () => mobileTimeline.reverse(),
-        });
+        const getTravel = () => Math.max(track.scrollWidth - viewport.clientWidth, 0);
+
+        if (getTravel() > 24) {
+          root.classList.add("services-showcase-mobile-scroll");
+
+          gsap.to(track, {
+            x: () => -getTravel(),
+            ease: "none",
+            scrollTrigger: {
+              trigger: root,
+              start: "top 14%",
+              end: () => `+=${Math.max(getTravel() * 1.6, window.innerHeight * 1.15)}`,
+              scrub: 0.72,
+              pin: root,
+              pinSpacing: true,
+              anticipatePin: 1,
+              invalidateOnRefresh: true,
+              onEnter: () => mobileTimeline.play(),
+              onEnterBack: () => mobileTimeline.play(),
+              onLeaveBack: () => mobileTimeline.reverse(),
+            },
+          });
+        } else {
+          ScrollTrigger.create({
+            trigger: root,
+            start: "top 92%",
+            end: "bottom 12%",
+            invalidateOnRefresh: true,
+            onEnter: () => mobileTimeline.play(),
+            onEnterBack: () => mobileTimeline.play(),
+            onLeaveBack: () => mobileTimeline.reverse(),
+          });
+        }
 
         mobileObserver = new IntersectionObserver(
           ([entry]) => {
@@ -152,6 +176,7 @@ export function ServicesNarrative({ kicker, title, summary, services }: Services
 
     return () => {
       mobileObserver?.disconnect();
+      root.classList.remove("services-showcase-mobile-scroll");
       context.revert();
     };
   }, []);
