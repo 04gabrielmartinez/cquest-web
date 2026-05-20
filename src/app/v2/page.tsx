@@ -1,6 +1,6 @@
-import { DeliveryModelSection } from "@/components/DeliveryModelSection";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { OperationalCommandSection } from "@/components/OperationalCommandSection";
 import { ServicesNarrative } from "@/components/ServicesNarrative";
 import { getDictionary, getLocale } from "@/lib/content";
 
@@ -86,11 +86,7 @@ export default async function HomeV2() {
           </div>
         </section>
 
-        <DeliveryModelSection
-          kicker={dictionary.home_method_kicker}
-          title={dictionary.home_method_title}
-          summary={dictionary.home_method_summary}
-        />
+        <OperationalCommandSection locale={locale} />
 
         <section id="sectors" className="home-section home-industries">
           <div className="container industries-layout">
