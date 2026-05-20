@@ -4,8 +4,8 @@ import { getLocale } from "@/lib/content";
 import { ScrollExperience } from "@/components/ScrollExperience";
 
 export const metadata: Metadata = {
-  title: "CQuest | Technology Provider",
-  description: "Technology, managed operations, customer experience, and support solutions for modern businesses.",
+  title: "CQuest | Socio tecnologico empresarial",
+  description: "Tecnologia, operaciones gestionadas, experiencia de cliente y soporte para empresas que necesitan control y continuidad.",
 };
 
 export default async function RootLayout({

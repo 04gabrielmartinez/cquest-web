@@ -27,7 +27,7 @@ export function Header({ dictionary, locale }: { dictionary: Dictionary; locale:
           <div className="desktop-links">
             <div className="nav-item">
               <NavLink href="/services">{dictionary.nav_services}</NavLink>
-              <button className="nav-link mega-trigger" type="button" aria-label={`${dictionary.nav_services} menu`}>
+              <button className="nav-link mega-trigger" type="button" aria-label={`Menu de ${dictionary.nav_services.toLowerCase()}`}>
                 <span className="chevron" aria-hidden="true" />
               </button>
               <div className="mega-menu">
@@ -71,13 +71,13 @@ export function Header({ dictionary, locale }: { dictionary: Dictionary; locale:
           </div>
 
           <div className="toolbar-actions">
-            <form className="language-switcher" action="/language" method="post" aria-label="Language selector">
+            <form className="language-switcher" action="/language" method="post" aria-label="Selector de idioma">
               <button type="submit" name="locale" value="en" aria-pressed={locale === "en"}>EN</button>
               <button type="submit" name="locale" value="es" aria-pressed={locale === "es"}>ES</button>
             </form>
           </div>
 
-          <input className="menu-toggle" id="mobile-menu" type="checkbox" aria-label="Toggle navigation" />
+          <input className="menu-toggle" id="mobile-menu" type="checkbox" aria-label="Abrir o cerrar navegacion" />
           <label className="mobile-menu-button" htmlFor="mobile-menu" aria-hidden="true"><span /></label>
           <div className="mobile-panel">
             <div className="mobile-links">

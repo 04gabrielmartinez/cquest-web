@@ -19,7 +19,7 @@ export function BrandHomeLink() {
   };
 
   return (
-    <Link className="brand" href="/#top" aria-label="CQuest home" onClick={handleClick}>
+    <Link className="brand" href="/#top" aria-label="Inicio de CQuest" onClick={handleClick}>
       <Image
         src="/assets/img/logo/logo-cquest.png"
         alt="CQuest"

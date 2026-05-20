@@ -2,13 +2,31 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 import type { Dictionary } from "@/lib/content";
 import { SplineHeroVisual } from "@/components/SplineHeroVisual";
 
-export function Hero({ dictionary }: { dictionary: Dictionary }) {
-  const splinePreviewUrl = "https://app.spline.design/file/359d4095-5c35-477b-ad0d-91e1f132096b?view=preview";
+type HeroProps = {
+  dictionary: Dictionary;
+  splinePreviewUrl?: string;
+  splineRuntimeSceneUrl?: string;
+  splineRenderOnDemand?: boolean;
+  splineCacheKey?: string;
+  splineVisual?: ReactNode;
+};
+
+export function Hero({
+  dictionary,
+  splinePreviewUrl = "https://app.spline.design/file/359d4095-5c35-477b-ad0d-91e1f132096b?view=preview",
+  splineRuntimeSceneUrl: splineRuntimeSceneUrlOverride,
+  splineRenderOnDemand = true,
+  splineCacheKey,
+  splineVisual,
+}: HeroProps) {
   const splineRuntimeSceneUrl =
-    process.env.NEXT_PUBLIC_SPLINE_SCENE_URL ?? "/assets/spline/cquest-hero.scene.splinecode";
+    splineRuntimeSceneUrlOverride ??
+    process.env.NEXT_PUBLIC_SPLINE_SCENE_URL ??
+    "/assets/spline/cquest-hero.scene.splinecode";
 
   return (
     <section className="hero hero-premium">
@@ -73,10 +91,19 @@ export function Hero({ dictionary }: { dictionary: Dictionary }) {
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1], delay: 0.16 }}
         >
           <div className="spline-shell">
-            <SplineHeroVisual previewUrl={splinePreviewUrl} runtimeSceneUrl={splineRuntimeSceneUrl} />
+            {splineVisual ?? (
+              <SplineHeroVisual
+                previewUrl={splinePreviewUrl}
+                runtimeSceneUrl={splineRuntimeSceneUrl}
+                renderOnDemand={splineRenderOnDemand}
+                cacheKey={splineCacheKey}
+              />
+            )}
           </div>
         </motion.div>
       </div>
+
+      <div className="hero-fade" aria-hidden="true" />
     </section>
   );
 }

@@ -96,6 +96,18 @@ export const dictionaries = {
     home_service_3_desc: "Run contact center, CRM, omnichannel service, quality, and audit workflows with consistent visibility.",
     home_service_4_title: "Operational intelligence",
     home_service_4_desc: "Turn process data into dashboards, scorecards, and management views that make performance easier to control.",
+    home_service_5_title: "System integrations",
+    home_service_5_desc: "Connect CRMs, ERPs, help desks, cloud tools, and internal platforms into cleaner operational workflows.",
+    home_service_6_title: "Cloud and infrastructure operations",
+    home_service_6_desc: "Support servers, environments, access, deployments, and continuity practices for teams that need stable technology.",
+    home_service_7_title: "Process optimization",
+    home_service_7_desc: "Map bottlenecks, remove duplicated work, and redesign execution flows around measurable service outcomes.",
+    home_service_8_title: "Enterprise help desk",
+    home_service_8_desc: "Operate structured intake, triage, escalation, documentation, and resolution tracking for internal teams.",
+    home_service_9_title: "CRM and sales workflows",
+    home_service_9_desc: "Improve lead handling, customer follow-up, pipeline visibility, and service-to-sales coordination.",
+    home_service_10_title: "Back-office operations",
+    home_service_10_desc: "Run administrative, reporting, documentation, and operational support tasks under a managed delivery model.",
     home_method_kicker: "Delivery model",
     home_method_title: "Designed, deployed, and operated with enterprise discipline",
     home_method_summary: "We move from diagnosis to implementation with a practical operating rhythm: map the process, stabilize the system, automate the work, and report the outcomes.",
@@ -190,6 +202,18 @@ export const dictionaries = {
     home_service_3_desc: "Opera contact center, CRM, atencion omnicanal, calidad y auditoria con visibilidad consistente.",
     home_service_4_title: "Inteligencia operativa",
     home_service_4_desc: "Convierte datos de procesos en dashboards, scorecards y vistas gerenciales que facilitan controlar el rendimiento.",
+    home_service_5_title: "Integraciones de sistemas",
+    home_service_5_desc: "Conecta CRMs, ERPs, mesas de ayuda, herramientas cloud y plataformas internas en flujos operativos mas claros.",
+    home_service_6_title: "Operaciones cloud e infraestructura",
+    home_service_6_desc: "Soporta servidores, ambientes, accesos, despliegues y practicas de continuidad para equipos que necesitan tecnologia estable.",
+    home_service_7_title: "Optimizacion de procesos",
+    home_service_7_desc: "Mapea cuellos de botella, elimina trabajo duplicado y rediseña flujos de ejecucion alrededor de resultados medibles.",
+    home_service_8_title: "Mesa de ayuda empresarial",
+    home_service_8_desc: "Opera recepcion, triaje, escalamiento, documentacion y seguimiento de resolucion para equipos internos.",
+    home_service_9_title: "CRM y flujos comerciales",
+    home_service_9_desc: "Mejora gestion de leads, seguimiento comercial, visibilidad de pipeline y coordinacion entre servicio y ventas.",
+    home_service_10_title: "Operaciones back-office",
+    home_service_10_desc: "Gestiona tareas administrativas, reporteria, documentacion y soporte operativo bajo un modelo de entrega gestionado.",
     home_method_kicker: "Modelo de entrega",
     home_method_title: "Disenado, implementado y operado con disciplina empresarial",
     home_method_summary: "Pasamos del diagnostico a la implementacion con un ritmo operativo practico: mapear el proceso, estabilizar el sistema, automatizar el trabajo y reportar resultados.",
@@ -228,7 +252,7 @@ export async function getLocale(): Promise<Locale> {
   const cookieStore = await cookies();
   const locale = cookieStore.get("locale")?.value;
 
-  return locale === "es" ? "es" : "en";
+  return locale === "en" ? "en" : "es";
 }
 
 export async function getDictionary(): Promise<Dictionary> {

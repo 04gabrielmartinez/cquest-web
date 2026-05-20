@@ -1,10 +1,10 @@
+import { DeliveryModelSection } from "@/components/DeliveryModelSection";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
-import { DeliveryModelSection } from "@/components/DeliveryModelSection";
 import { ServicesNarrative } from "@/components/ServicesNarrative";
 import { getDictionary, getLocale } from "@/lib/content";
 
-export default async function Home() {
+export default async function HomeV2() {
   const [dictionary, locale] = await Promise.all([getDictionary(), getLocale()]);
   const serviceCards = [
     {
@@ -66,9 +66,13 @@ export default async function Home() {
   ];
 
   return (
-    <>
+    <div className="page-v2">
       <Header dictionary={dictionary} locale={locale} />
-      <Hero dictionary={dictionary} />
+      <Hero
+        dictionary={dictionary}
+        splineRuntimeSceneUrl="https://prod.spline.design/w5fDAYD0y2M-J7Xr/scene.splinecode"
+        splineRenderOnDemand={false}
+      />
 
       <main className="page-content">
         <section id="services" className="home-section home-services">
@@ -133,6 +137,6 @@ export default async function Home() {
       <footer>
         <div className="container">{dictionary.footer}</div>
       </footer>
-    </>
+    </div>
   );
 }
