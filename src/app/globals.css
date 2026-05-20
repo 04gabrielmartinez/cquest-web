@@ -1340,11 +1340,9 @@ footer {
 
 .page-v2 .scroll-path-signal {
   position: fixed;
-  top: 88px;
-  right: clamp(18px, 3vw, 48px);
-  bottom: 34px;
-  z-index: 90;
-  width: clamp(58px, 5.8vw, 92px);
+  inset: 86px 0 28px;
+  z-index: 18;
+  width: 100vw;
   pointer-events: none;
 }
 
@@ -1363,8 +1361,8 @@ footer {
 }
 
 .page-v2 .scroll-path-signal-guide {
-  stroke: rgba(14, 116, 144, 0.12);
-  stroke-dasharray: 1 10;
+  stroke: rgba(14, 116, 144, 0.095);
+  stroke-dasharray: 1 13;
   stroke-linecap: round;
   stroke-width: 1;
 }
@@ -1377,16 +1375,25 @@ footer {
 .page-v2 .scroll-path-signal-marker {
   position: absolute;
   display: grid;
-  width: 52px;
-  height: 52px;
+  width: 58px;
+  height: 58px;
   place-items: center;
   transform-origin: center;
   will-change: transform;
 }
 
+.page-v2 .scroll-path-signal-shockwave {
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(14, 116, 144, 0.28);
+  border-radius: 999px;
+  opacity: 0;
+  transform: scale(0.72);
+}
+
 .page-v2 .scroll-path-signal-shape {
   position: absolute;
-  inset: 8px;
+  inset: 9px;
   border: 1px solid rgba(14, 116, 144, 0.26);
   border-radius: 999px;
   background:
@@ -1397,7 +1404,6 @@ footer {
     0 0 0 8px rgba(116, 195, 213, 0.09);
   transition:
     border-radius 0.42s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1),
     background 0.42s ease,
     box-shadow 0.42s ease;
 }
@@ -1429,10 +1435,23 @@ footer {
   transform: translate(-50%, -50%);
 }
 
+.page-v2 .scroll-path-signal-particle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgba(14, 116, 144, 0.72);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+  box-shadow: 0 0 14px rgba(14, 116, 144, 0.28);
+}
+
 .page-v2 .scroll-path-signal-label {
   position: absolute;
   top: 50%;
-  right: 46px;
+  left: 48px;
   min-width: 74px;
   padding: 7px 9px;
   border: 1px solid rgba(16, 32, 51, 0.08);
@@ -1444,29 +1463,26 @@ footer {
   line-height: 1;
   text-align: center;
   box-shadow: 0 14px 30px rgba(16, 32, 51, 0.08);
-  transform: translateY(-50%);
+  transform: translateY(-50%) translateX(6px);
   backdrop-filter: blur(12px);
 }
 
 .page-v2 .scroll-path-signal-marker.is-systems .scroll-path-signal-shape {
-  border-radius: 12px;
+  border-radius: 9px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(116, 195, 213, 0.5)),
     rgba(14, 116, 144, 0.78);
-  transform: rotate(45deg) scale(0.92);
 }
 
 .page-v2 .scroll-path-signal-marker.is-model .scroll-path-signal-shape {
-  border-radius: 10px;
+  border-radius: 2px;
   background:
     linear-gradient(135deg, rgba(52, 211, 153, 0.8), rgba(14, 116, 144, 0.86));
-  transform: scaleX(1.24) scaleY(0.82);
+  clip-path: polygon(50% 7%, 94% 88%, 6% 88%);
 }
 
 .page-v2 .scroll-path-signal-marker.is-model .scroll-path-signal-shape::after {
-  width: 18px;
-  height: 3px;
-  border-radius: 999px;
+  opacity: 0;
 }
 
 .page-v2 .scroll-path-signal-marker.is-signals .scroll-path-signal-shape {
@@ -1474,14 +1490,14 @@ footer {
   background:
     radial-gradient(circle at 68% 30%, rgba(255, 255, 255, 0.84), transparent 22%),
     linear-gradient(135deg, rgba(154, 220, 231, 0.9), rgba(20, 184, 166, 0.84));
-  transform: rotate(-12deg);
+  clip-path: none;
 }
 
 .page-v2 .scroll-path-signal-marker.is-ready .scroll-path-signal-shape {
   border-radius: 999px 999px 999px 8px;
   background:
     linear-gradient(135deg, rgba(52, 211, 153, 0.92), rgba(14, 116, 144, 0.9));
-  transform: rotate(45deg) scale(0.92);
+  clip-path: none;
 }
 
 .page-v2 .scroll-path-signal-marker.is-ready .scroll-path-signal-shape::after {
