@@ -7,19 +7,21 @@ import type { MouseEvent } from "react";
 
 export function BrandHomeLink() {
   const pathname = usePathname();
+  const isV2 = pathname === "/v2";
+  const homePath = isV2 ? "/v2" : "/";
 
   const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    if (pathname !== "/") {
+    if (pathname !== "/" && !isV2) {
       return;
     }
 
     event.preventDefault();
     window.scrollTo({ top: 0, behavior: "smooth" });
-    history.replaceState(null, "", "/");
+    history.replaceState(null, "", homePath);
   };
 
   return (
-    <Link className="brand" href="/#top" aria-label="Inicio de CQuest" onClick={handleClick}>
+    <Link className="brand" href={`${homePath}#top`} aria-label="Inicio de CQuest" onClick={handleClick}>
       <Image
         src="/assets/img/logo/logo-cquest.png"
         alt="CQuest"

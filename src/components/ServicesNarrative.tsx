@@ -68,28 +68,63 @@ export function ServicesNarrative({ kicker, title, summary, services }: Services
 
       if (window.matchMedia("(max-width: 900px)").matches) {
         gsap.set(narrative, { autoAlpha: 0, y: 20 });
-        gsap.set(cards, { autoAlpha: 0, x: 18, y: 0 });
+        gsap.set(cards, { autoAlpha: 0, x: 24, y: 10, scale: 0.96, filter: "blur(8px)" });
         gsap.set(track, { x: 0, y: 0, force3D: true });
 
-        const mobileTimeline = gsap
-          .timeline({ paused: true })
-          .to(narrative, {
-            autoAlpha: 1,
-            y: 0,
-            duration: 0.62,
-            ease: "power3.out",
-          })
-          .to(
+        const revealMobile = (fromX = 24) => {
+          gsap.fromTo(
+            narrative,
+            { autoAlpha: 0, y: 18 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.72,
+              ease: "power3.out",
+              overwrite: "auto",
+            },
+          );
+
+          gsap.fromTo(
             cards,
+            { autoAlpha: 0, x: fromX, y: 10, scale: 0.96, filter: "blur(8px)" },
             {
               autoAlpha: 1,
               x: 0,
-              duration: 0.58,
+              y: 0,
+              scale: 1,
+              filter: "blur(0px)",
+              duration: 0.76,
               ease: "power3.out",
-              stagger: 0.07,
+              stagger: 0.055,
+              overwrite: "auto",
             },
-            "-=0.24",
           );
+        };
+
+        const hideMobile = (toX = -22) => {
+          gsap.to(narrative, {
+            autoAlpha: 0,
+            y: toX < 0 ? -16 : 18,
+            duration: 0.44,
+            ease: "power2.inOut",
+            overwrite: "auto",
+          });
+
+          gsap.to(cards, {
+            autoAlpha: 0,
+            x: toX,
+            y: toX < 0 ? -8 : 10,
+            scale: 0.97,
+            filter: "blur(7px)",
+            duration: 0.62,
+            ease: "power2.inOut",
+            stagger: {
+              each: 0.035,
+              from: toX < 0 ? "start" : "end",
+            },
+            overwrite: "auto",
+          });
+        };
 
         const getTravel = () => Math.max(track.scrollWidth - viewport.clientWidth, 0);
 
@@ -108,9 +143,10 @@ export function ServicesNarrative({ kicker, title, summary, services }: Services
               pinSpacing: true,
               anticipatePin: 1,
               invalidateOnRefresh: true,
-              onEnter: () => mobileTimeline.play(),
-              onEnterBack: () => mobileTimeline.play(),
-              onLeaveBack: () => mobileTimeline.reverse(),
+              onEnter: () => revealMobile(24),
+              onLeave: () => hideMobile(-24),
+              onEnterBack: () => revealMobile(-18),
+              onLeaveBack: () => hideMobile(24),
             },
           });
         } else {
@@ -119,16 +155,17 @@ export function ServicesNarrative({ kicker, title, summary, services }: Services
             start: "top 92%",
             end: "bottom 12%",
             invalidateOnRefresh: true,
-            onEnter: () => mobileTimeline.play(),
-            onEnterBack: () => mobileTimeline.play(),
-            onLeaveBack: () => mobileTimeline.reverse(),
+            onEnter: () => revealMobile(24),
+            onLeave: () => hideMobile(-24),
+            onEnterBack: () => revealMobile(-18),
+            onLeaveBack: () => hideMobile(24),
           });
         }
 
         mobileObserver = new IntersectionObserver(
           ([entry]) => {
             if (entry?.isIntersecting) {
-              mobileTimeline.play();
+              revealMobile(24);
             }
           },
           { threshold: 0.16 },

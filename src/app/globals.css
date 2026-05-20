@@ -2330,6 +2330,21 @@ html[data-header-solid] .page-v2 .language-switcher {
     touch-action: pan-y;
   }
 
+  .page-v2 .services-showcase-mobile-scroll .service-capability {
+    border-color: rgba(16, 32, 51, 0.09);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.58), rgba(255, 255, 255, 0.18));
+    box-shadow:
+      0 18px 42px rgba(16, 32, 51, 0.07),
+      inset 0 1px 0 rgba(255, 255, 255, 0.76);
+    backdrop-filter: none;
+  }
+
+  .page-v2 .services-showcase-mobile-scroll .service-capability::before {
+    width: 1px;
+    background: linear-gradient(180deg, rgba(14, 116, 144, 0.34), rgba(14, 116, 144, 0));
+  }
+
   .page-v2 .services-carousel::-webkit-scrollbar {
     display: none;
   }
