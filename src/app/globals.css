@@ -1725,8 +1725,8 @@ html[data-header-solid] .page-v2 .language-switcher {
 .page-v2 .operational-command-image {
   position: absolute;
   inset: 50% auto auto 50%;
-  width: min(760px, 64vw);
-  transform: translate(-45%, -50%);
+  width: min(820px, 68vw);
+  transform: translate(-44%, -50%);
   transform-origin: center;
   will-change: transform;
 }
@@ -1735,7 +1735,11 @@ html[data-header-solid] .page-v2 .language-switcher {
   display: block;
   width: 100%;
   height: auto;
-  filter: drop-shadow(0 34px 60px rgba(16, 32, 51, 0.13));
+  filter:
+    contrast(1.08)
+    saturate(1.08)
+    drop-shadow(0 26px 36px rgba(16, 32, 51, 0.14))
+    drop-shadow(0 6px 18px rgba(14, 116, 144, 0.1));
   transform-origin: center;
   will-change: transform;
 }
@@ -2506,7 +2510,7 @@ html[data-header-solid] .page-v2 .language-switcher {
   }
 
   .page-v2 .operational-command-image {
-    width: min(620px, 118vw);
+    width: min(660px, 124vw);
     transform: translate(-49%, -48%);
   }
 
