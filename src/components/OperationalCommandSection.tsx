@@ -72,32 +72,32 @@ export function OperationalCommandSection({ locale }: OperationalCommandSectionP
       const revealItems = gsap.utils.toArray<HTMLElement>(".operating-model-reveal", section);
       const lanes = gsap.utils.toArray<HTMLElement>(".operating-model-lane", section);
 
-      gsap.set([copy, board], { autoAlpha: 0, y: 34 });
-      gsap.set(revealItems, { autoAlpha: 0, y: 18, scale: 0.97 });
+      gsap.set([copy, board], { autoAlpha: 0, y: 22 });
+      gsap.set(revealItems, { autoAlpha: 0, y: 12, scale: 0.985 });
       gsap.set(lanes, { "--lane-progress": "0%" });
 
       gsap
         .timeline({
           scrollTrigger: {
             trigger: section,
-            start: "top 72%",
+            start: "top 88%",
             end: "bottom 18%",
             toggleActions: "play none none reverse",
           },
         })
-        .to(copy, { autoAlpha: 1, y: 0, duration: 0.72, ease: "power3.out" })
-        .to(board, { autoAlpha: 1, y: 0, duration: 0.82, ease: "power3.out" }, "-=0.46")
+        .to(copy, { autoAlpha: 1, y: 0, duration: 0.52, ease: "power3.out" })
+        .to(board, { autoAlpha: 1, y: 0, duration: 0.56, ease: "power3.out" }, "-=0.38")
         .to(
           revealItems,
           {
             autoAlpha: 1,
             y: 0,
             scale: 1,
-            duration: 0.56,
+            duration: 0.38,
             ease: "power3.out",
-            stagger: 0.065,
+            stagger: 0.035,
           },
-          "-=0.42",
+          "-=0.3",
         );
 
       lanes.forEach((lane) => {
