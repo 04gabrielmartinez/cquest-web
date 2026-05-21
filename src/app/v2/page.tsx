@@ -1,65 +1,10 @@
 import { Header } from "@/components/Header";
-import { Hero } from "@/components/Hero";
 import { OperationalCommandSection } from "@/components/OperationalCommandSection";
 import { ScrollPathSignal } from "@/components/ScrollPathSignal";
-import { ServicesNarrative } from "@/components/ServicesNarrative";
 import { getDictionary, getLocale } from "@/lib/content";
 
 export default async function HomeV2() {
   const [dictionary, locale] = await Promise.all([getDictionary(), getLocale()]);
-  const serviceCards = [
-    {
-      title: dictionary.home_service_1_title,
-      desc: dictionary.home_service_1_desc,
-      meta: dictionary.nav_digital,
-    },
-    {
-      title: dictionary.home_service_2_title,
-      desc: dictionary.home_service_2_desc,
-      meta: dictionary.nav_infra,
-    },
-    {
-      title: dictionary.home_service_3_title,
-      desc: dictionary.home_service_3_desc,
-      meta: dictionary.nav_customer,
-    },
-    {
-      title: dictionary.home_service_4_title,
-      desc: dictionary.home_service_4_desc,
-      meta: dictionary.nav_operations,
-    },
-    {
-      title: dictionary.home_service_5_title,
-      desc: dictionary.home_service_5_desc,
-      meta: dictionary.nav_integrations,
-    },
-    {
-      title: dictionary.home_service_6_title,
-      desc: dictionary.home_service_6_desc,
-      meta: dictionary.nav_infra,
-    },
-    {
-      title: dictionary.home_service_7_title,
-      desc: dictionary.home_service_7_desc,
-      meta: dictionary.nav_process,
-    },
-    {
-      title: dictionary.home_service_8_title,
-      desc: dictionary.home_service_8_desc,
-      meta: dictionary.nav_helpdesk,
-    },
-    {
-      title: dictionary.home_service_9_title,
-      desc: dictionary.home_service_9_desc,
-      meta: dictionary.nav_crm,
-    },
-    {
-      title: dictionary.home_service_10_title,
-      desc: dictionary.home_service_10_desc,
-      meta: dictionary.nav_backoffice,
-    },
-  ];
-
   const outcomes = [
     dictionary.home_outcome_1,
     dictionary.home_outcome_2,
@@ -70,26 +15,8 @@ export default async function HomeV2() {
     <div className="page-v2">
       <ScrollPathSignal />
       <Header dictionary={dictionary} locale={locale} />
-      <div data-scroll-signal="hero">
-        <Hero
-          dictionary={dictionary}
-          splineRuntimeSceneUrl="https://prod.spline.design/w5fDAYD0y2M-J7Xr/scene.splinecode"
-          splineRenderOnDemand={false}
-        />
-      </div>
 
       <main className="page-content">
-        <section id="services" className="home-section home-services" data-scroll-signal="services">
-          <div className="container">
-            <ServicesNarrative
-              kicker={dictionary.home_services_kicker}
-              title={dictionary.home_services_title}
-              summary={dictionary.home_services_summary}
-              services={serviceCards}
-            />
-          </div>
-        </section>
-
         <OperationalCommandSection locale={locale} />
 
         <section id="sectors" className="home-section home-industries" data-scroll-signal="sectors">

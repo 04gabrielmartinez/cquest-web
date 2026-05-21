@@ -143,7 +143,10 @@ export function ScrollPathSignal() {
           );
       };
 
-      setState("hero");
+      const initialSection = document.querySelector<HTMLElement>("[data-scroll-signal]");
+      const initialState = initialSection?.dataset.scrollSignal as StateKey | undefined;
+
+      setState(initialState && states[initialState] ? initialState : "hero");
 
       const getPoints = () => {
         const width = window.innerWidth;
